@@ -32,7 +32,7 @@ async function fetchToken(code, config) {
 }
 
 function checkIdToken(id_token, config) {
-	const result = jwt.decode(id_token, config.client_secret, false, 'HS256')
+	const result = jwt.decode(id_token, config.client_secret, true, 'RS256')
 	if (result.iss !== config.base_uri) return false
 	if (result.aud.indexOf(config.client_id) < 0) return false
 	// if(result.exp < Date.now()) return false
